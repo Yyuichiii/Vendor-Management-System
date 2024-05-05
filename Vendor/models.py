@@ -141,7 +141,7 @@ class PurchaseOrder(models.Model):
 
 class HistoricalPerformance(models.Model):
     vendor = models.ForeignKey('Vendor_Model', on_delete=models.CASCADE, help_text='Select the vendor for this performance record.')
-    date = models.DateTimeField(help_text='Date of the performance record.')
+    date = models.DateTimeField(auto_now_add=True,help_text='Date of the performance record.')
     on_time_delivery_rate = models.FloatField(default=0.0, help_text='Historical record of the on-time delivery rate (0.0 - 1.0).')
     quality_rating_avg = models.FloatField(default=0.0, help_text='Historical record of the quality rating average (0.0 - 5.0).')
     average_response_time = models.FloatField(default=0.0, help_text='Historical record of the average response time in hours.')

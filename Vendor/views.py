@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .serializers import VendorProfileSerializers,PurchaseOrderSerializer,VendorPerformaceSerializer
-from .models import Vendor_Model,PurchaseOrder
+from .models import Vendor_Model,PurchaseOrder,HistoricalPerformance
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -217,6 +217,7 @@ def calculate_vendor_performance(vendor):
     vendor.fulfillment_rate = fulfillment_rate
     vendor.on_time_delivery_rate=on_time_delivery
     vendor.save()
+    store_performace_data_HistoricalPerformance(vendor)
 
 
 
@@ -228,5 +229,18 @@ class Vendor_Performance(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+
+
+def store_performace_data_HistoricalPerformance(vendor):
+    data=HistoricalPerformance.objects.create(
+        vendor=vendor,
+        on_time_delivery_rate=vendor.on_time_delivery_rate,
+        quality_rating_avg=vendor.quality_rating_avg,
+        average_response_time=vendor.average_response_time,
+        fulfillment_rate=vendor.fulfillment_rate
+    )
+
+    data.save()
+
 
         
