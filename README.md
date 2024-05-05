@@ -53,3 +53,112 @@ python manage.py runserver
 ```
 
 The server will start running at http://127.0.0.1:8000/ by default. 
+
+## API Endpoints
+
+Below are the API endpoints available in this project:
+
+### Vendor Register: `/api/vendors/`
+
+- **Method:** POST
+- **Description:** Create the vendor profile.
+- **Request Body:**
+  ```json
+  {
+    "vendor_code": "test_tset",
+    "name": "test",
+    "password": "test1234",
+    "password2": "test1234"
+  }
+  ```
+
+### Vendor List: `/api/vendors/`
+
+- **Method:** GET
+- **Description:** List all the vendors.
+
+### Vendor Performace: `/api/vendors/{vendor_id}/performance`
+
+- **Method:** GET
+- **Description:** get the vendor performance.
+
+
+### Vendor-details-update: `/api/vendors/{vendor_id}`
+
+- **Method:** PUT
+- **Description:** Update the vendor profile.
+- **Request Body:**
+  ```json
+  {
+    "name": "test",
+    "contact_details": "test_contacts",
+    "address": "test_address"
+  }
+  ```
+
+### Vendor Delete: `/api/vendors/{vendor_id}`
+
+- **Method:** DELETE
+- **Description:** Delete the vendor profile.
+
+
+### Create Purchase Order: `/api/purchase_orders/`
+
+- **Method:** POST
+- **Description:** Create the Purchase Order.
+- **Request Body:**
+  ```json
+  {
+    "po_number":"afdgdsdfdfdgdcd",
+    "vendor":1,
+    "delivery_date":"2024-05-06",
+    "quantity":5,
+    "items":{
+        "id":1,
+        "name":"tsst"
+          }
+  }
+  ```
+
+### Purchase Order list: `/api/purchase_orders/`
+
+- **Method:** GET
+- **Description:** Get the Purchase orders list.
+
+### Purchase Order Details: `/api/purchase_orders/{po_id}`
+
+- **Method:** GET
+- **Description:** Get the Purchase order based on the id provided.
+
+
+### Update Purchase Order: `/api/purchase_orders/{po_id}`
+
+- **Method:** PUT
+- **Description:** Update the Purchase Order.
+- **Request Body:**
+  ```json
+  {
+    "po_number":"assd"
+  }
+  ```
+
+### Delete Purchase Order: `/api/purchase_orders/{po_id}`
+
+- **Method:** DELETE
+- **Description:** Delete the Purchase Order.
+
+### Purchase Order Acknowlege: `/api/purchase_orders/{po_id}/acknowledge`
+
+- **Method:** POST
+- **Description:** Acknowledge the Purchase order by the Vendor.
+
+### Complete Purchase Order: `/api/purchase_orders/{po_id}/completed`
+
+- **Method:** POST
+- **Description:** Complete the Purchase order by the Vendor
+- **Request Body:**
+  ```json
+  {
+    "rating": 3
+  }
+  ```
